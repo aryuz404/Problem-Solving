@@ -5,8 +5,9 @@ using UnityEngine;
 public class CircleMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
+    private Vector3 mousePosition;
 
-    public float speed = 10.0f;
+    public float speed = 0.1f;
 
     // Start is called before the first frame update
     void Start()
@@ -23,31 +24,12 @@ public class CircleMovement : MonoBehaviour
 
     void MoveCircle()
     {
-        Vector2 velocity = rb.velocity;
-
-        if(Input.GetKey(KeyCode.W))
+        if(Input.GetMouseButton(0))
         {
-            velocity.y = speed;
+            mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mousePosition.z = transform.position.z;
+            transform.position = Vector3.MoveTowards(transform.position, mousePosition, speed * Time.deltaTime);
         }
-        else if(Input.GetKey(KeyCode.S))
-        {
-            velocity.y = -speed;
-        }
-        else if(Input.GetKey(KeyCode.D))
-        {
-            velocity.x = speed;
-        }
-        else if(Input.GetKey(KeyCode.A))
-        {
-            velocity.x = -speed;
-        }
-        else
-        {
-            velocity.x = 0.0f;
-            velocity.y = 0.0f;
-        }
-
-        rb.velocity = velocity;
     }
 
 }//class
