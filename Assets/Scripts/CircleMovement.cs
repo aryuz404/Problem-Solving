@@ -22,7 +22,7 @@ public class CircleMovement : MonoBehaviour
 
     void MoveCircle()
     {
-        rb.AddForce(new Vector2(50, 15));
+        rb.AddForce(new Vector2(80, 15));
     }
 
 }//class
