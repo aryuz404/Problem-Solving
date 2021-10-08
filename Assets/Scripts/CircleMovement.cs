@@ -4,9 +4,29 @@ using UnityEngine;
 
 public class CircleMovement : MonoBehaviour
 {
+    private static CircleMovement instance;
+
+    public static CircleMovement Instance
+    {
+        get
+        {
+            if(instance == null)
+            {
+                instance = FindObjectOfType<CircleMovement>();
+
+                if(instance == null)
+                {
+                    Debug.LogError("CircleMovement not found");
+                }
+            }
+            return instance;
+        }
+    }
+
     private Rigidbody2D rb;
     private Vector3 mousePosition;
 
+    public Vector3 circlePosition;
     public float speed = 0.1f;
 
     // Start is called before the first frame update
@@ -30,6 +50,8 @@ public class CircleMovement : MonoBehaviour
             mousePosition.z = transform.position.z;
             transform.position = Vector3.MoveTowards(transform.position, mousePosition, speed * Time.deltaTime);
         }
+
+        circlePosition = transform.position;
     }
 
 }//class
