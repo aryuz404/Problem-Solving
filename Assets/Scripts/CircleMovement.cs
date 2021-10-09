@@ -54,4 +54,17 @@ public class CircleMovement : MonoBehaviour
         circlePosition = transform.position;
     }
 
+    private void OnTriggerEnter2D(Collider2D collision) 
+    {
+
+        if(collision.CompareTag("Box"))
+        {
+            collision.gameObject.SetActive(false);
+            //Destroy(gameObject);
+            ScoreManager.Instance.AddScore(1);
+            StartCoroutine(BoxSpawner.Instance.RespawnBox());
+
+        }
+    }
+
 }//class
