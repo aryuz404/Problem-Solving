@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
+
 
 public class ScoreManager : MonoBehaviour
 {
@@ -24,15 +22,32 @@ public class ScoreManager : MonoBehaviour
         }
     }
     
-    [SerializeField]
-    private Text scoreText;
 
-    private int score = 0;
+    public int HighScore {get { return highScore; }}
+    public int CurrentScore {get {return currentScore; }}
+
+    private int currentScore;
+    private static int highScore;
+
+    private void Start() 
+    {
+        ResetCurrentScore();
+    }
+
+    public void ResetCurrentScore()
+    {
+        currentScore = 0;
+    }
 
     public void AddScore(int value)
     {
-        score += value;
-        scoreText.text = score.ToString();
+        currentScore += value;
+        SoundManager.Instance.PlayHit();
+    }
+
+    public void SetHighScore()
+    {
+        highScore = currentScore;
     }
     
 }//class

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CircleMovement : MonoBehaviour
 {
@@ -60,7 +58,6 @@ public class CircleMovement : MonoBehaviour
         if(collision.CompareTag("Box"))
         {
             collision.gameObject.SetActive(false);
-            //Destroy(gameObject);
             ScoreManager.Instance.AddScore(1);
             StartCoroutine(BoxSpawner.Instance.RespawnBox());
 

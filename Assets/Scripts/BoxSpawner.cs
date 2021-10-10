@@ -43,12 +43,6 @@ public class BoxSpawner : MonoBehaviour
         SpawnBox();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private Vector3 FindRandomPosition()
     {
         Vector3 boxPos;
@@ -59,7 +53,7 @@ public class BoxSpawner : MonoBehaviour
             float maxX = rightWall.transform.position.x - rightWall.bounds.size.x;
             float x = Random.Range(minX, maxX);
 
-            float minY = topWall.transform.position.y - topWall.bounds.size.y;
+            float minY = topWall.transform.position.y - topWall.bounds.size.y - 3;
             float maxY = bottomWall.transform.position.y + bottomWall.bounds.size.y;
             float y = Random.Range(minY, maxY);
 
@@ -94,17 +88,18 @@ public class BoxSpawner : MonoBehaviour
     {
         int randomBox = Random.Range(4, 10);
 
+        
         for(int i = 0; i < randomBox; i++)
         {
             
+        Vector3 boxPosition = FindRandomPosition();
 
-            Vector3 boxPosition = FindRandomPosition();
-
-            GameObject box = Instantiate(boxPrefabs, boxPosition, Quaternion.identity, transform).gameObject;
+        GameObject box = Instantiate(boxPrefabs, boxPosition, Quaternion.identity, transform).gameObject;
             
-            boxPool.Add(box);
+        boxPool.Add(box);
             
         }
+        
         
     }
 
